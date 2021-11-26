@@ -12,148 +12,150 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-size: cover;
-      }
-    </style>
+    <link rel="stylesheet" href="../style/checkin.css" />
     <title>회원가입</title>
   </head>
   <body>
     <form>
-      <img src="Skku.jpg" width="300" height="300" alt="skku" />
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">ID</label>
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-        />
-        <div id="emailHelp" class="form-text">사용하실 ID를 입력해주세요</div>
+      <div style="text-align: center">
+        <img src="Skku.jpg" width="300" height="300" alt="skku" />
       </div>
-      <div class="mb-2">
-        <label for="exampleInputPassword1" class="form-label">비밀번호</label>
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-        />
-      </div>
-      <div class="mb-2">
-        <label for="exampleInputPassword1" class="form-label"
-          >비밀번호 재확인</label
-        >
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-        />
-      </div>
-      <div class="mb-2">
-        <label for="exampleInputEmail1" class="form-label">이름</label>
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-        />
-      </div>
-      <div class="mb-2">
-        <label for="exampleInputPassword1" class="form-label">성별</label>
-        <div>
-          <select style="width: 300px; height: 38px; font-size: 13px">
-            <option>성별</option>
-            <option value="01">남자</option>
-            <option value="02">여자</option>
-          </select>
+      <div class="content">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">ID</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">사용하실 ID를 입력해주세요</div>
         </div>
-      </div>
-      <div class="mb-2">
-        <label for="exampleInputPassword1" class="form-label">생년월일</label>
-        <div style="display: table">
-          <span style="display: table-cell">
-            <input
-              style="width: 70px; height: 38px"
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="YYYY"
-            />
-          </span>
-          <span style="display: table-cell">
-            &nbsp;
-            <select style="width: 70px; height: 38px">
-              <option>월</option>
-              <option value="01">1</option>
-              <option value="02">2</option>
-              <option value="03">3</option>
-              <option value="04">4</option>
-              <option value="05">5</option>
-              <option value="06">6</option>
-              <option value="07">7</option>
-              <option value="08">8</option>
-              <option value="09">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-            &nbsp;
-          </span>
-          <span style="display: table-cell">
-            <select style="width: 70px; height: 38px">
-              <option>일</option>
-              <option value="01">1</option>
-              <option value="02">2</option>
-              <option value="03">3</option>
-              <option value="04">4</option>
-              <option value="05">5</option>
-              <option value="06">6</option>
-              <option value="07">7</option>
-              <option value="08">8</option>
-              <option value="09">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
-              <option value="24">24</option>
-              <option value="25">25</option>
-              <option value="26">26</option>
-              <option value="27">27</option>
-              <option value="28">28</option>
-              <option value="29">29</option>
-              <option value="30">30</option>
-              <option value="31">31</option>
-            </select>
-          </span>
+        <div class="mb-2">
+          <label for="exampleInputPassword1" class="form-label">비밀번호</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
         </div>
-      </div>
-      <div class="mb-4">
-        <label for="exampleInputEmail1" class="form-label">휴대전화</label>
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          placeholder="010-1398-1398"
-        />
-      </div>
-      <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary btn-lg">가입하기</button>
+        <div class="mb-2">
+          <label for="exampleInputPassword1" class="form-label"
+            >비밀번호 재확인</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputEmail1" class="form-label">이름</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputPassword1" class="form-label">성별</label>
+          <div>
+            <select
+              style="
+                width: 300px;
+                height: 38px;
+                font-size: 15px;
+                font-weight: bold;
+              "
+            >
+              <option>성별</option>
+              <option value="01">남자</option>
+              <option value="02">여자</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputPassword1" class="form-label">생년월일</label>
+          <div style="display: table">
+            <span style="display: table-cell">
+              <input
+                style="width: 70px; height: 38px"
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                placeholder="YYYY"
+              />
+            </span>
+            <span style="display: table-cell">
+              &nbsp;
+              <select style="width: 70px; height: 38px">
+                <option>월</option>
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              &nbsp;
+            </span>
+            <span style="display: table-cell">
+              <select style="width: 70px; height: 38px">
+                <option>일</option>
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+            </span>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="exampleInputEmail1" class="form-label">휴대전화</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            placeholder="010-1398-1398"
+          />
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-success btn-lg">가입하기</button>
+        </div>
       </div>
     </form>
 
