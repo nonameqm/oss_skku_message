@@ -168,21 +168,13 @@
     cursor: pointer;
     text-align:center;
     border: none;
-
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
 }
 
 .button:hover {
-    background-position: 100% 0;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+    background-color: var(--sub-theme-color);
 }
 
 #keyword_button {
-    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
     box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
 }
 
@@ -212,7 +204,75 @@
 }
 
 /* Wrapper Content */
+.recommend_content_wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    padding-bottom: 5px;
+}
+
+.recommend_content{
+    width: 100%;
+}
+
+.recommend_title{
+    font-size: 18px;
+}
 
 .recommend_iframe{
+    display: flex;
+    justify-content: center;
     width: 100%;
+    border-radius: 10px;
+    height: 480px;
+    border: 3px solid var(--sub-theme-color-sub);
+    margin-bottom: 10px;
+}
+
+.page_embed{
+    width: 100%;
+    height: 100%;
+}
+
+.recommend_footer{
+    display: flex;
+    justify-content: center;
+}
+
+.recommend_footer_wrapper{
+    width: 100%;
+    padding: 20px;
+}
+
+.sns_button_list{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px
+}
+
+.sns_button{
+    background-color: var(--sub-theme-color-sub);
+    padding: 8px;
+    width: 30%;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 20px;
+    cursor: pointer;
+    text-align:center;
+    border: none;
+}
+
+.sns_button.active{
+    background-color: var(--sub-theme-color);
+}
+
+.sns_content{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+    min-height: 300px;
+    border: 3px solid var(--sub-theme-color-sub);
 }
