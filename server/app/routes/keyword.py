@@ -36,7 +36,17 @@ def read_keyword(request:Request, keyword: str, db: Session = Depends(get_databa
 
     return records
 #####read#####
+    return response
 
+@router.get('/user_id/{uid}', response_model=List[schema.KeywordReturn])
+async def get_user_keys(request:Request, uid:str, db:Session = Depends(get_database_session)):
+    print("hello")
+    response = crud.get_keyword_by_uid(db=db, uid=uid)
+    print(response)
+    if response == None:
+        raise HTTPException(status_code=412, detail="User ID already exists")
+    
+    return response
 
 @router.post('/user_key_add')
 async def create_user_key_assoc( db:Session = Depends(get_database_session), id:str = Form(...), keyword:str=Form(...)):
@@ -52,16 +62,7 @@ async def create_user_key_assoc( db:Session = Depends(get_database_session), id:
     if response == None:
         raise HTTPException(status_code=412, detail="User ID already exists")
     response = HTTPException(status_code=201, detail="Keyword Created")
-    return response
 
-@router.get('/user_keys', response_model=List[schema.KeywordReturn])
-def get_user_keys( db:Session = Depends(get_database_session), id:str = Form(...)):
-    response = crud.get_keyword_by_uid(db=db, uid=id)
-    print(response)
-    if response == None:
-        raise HTTPException(status_code=412, detail="User ID already exists")
-    
-    return response
 
 
  
