@@ -94,9 +94,7 @@ def create_user_key_assoc(db:Session, user_key_assoc: schema.UserKeyAssoc):
 
 
 def get_keyword_by_uid(db:Session, uid:str):
-    obj = db.query(model.Keyword).join(
-        model.UserKeyAssoc
-    ).filter(
+    obj = db.query(model.Keyword, model.UserKeyAssoc ).filter(
         model.Keywrod.realtion_id == model.UserKeyAssoc.realtion_id
     ).all()
     return obj
