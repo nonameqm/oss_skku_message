@@ -35,6 +35,14 @@ def read_User(request:Request, uid: str, db: Session = Depends(get_database_sess
         raise HTTPException(status_code=404, detail="User not found")
 
     return templates.TemplateResponse("html", {"request": request, "User": item})
+
+@router.post("/login")
+def logincheck(db:Session = Depends(get_database_session), id:str = Form(...), password:str=Form(...)):
+    item = crud.get_user(db=db, user_id = id)
+    response =  HTTPException(status_code=412, detail="Password fail")
+    if item.password == password:
+        response =  RedirectResponse('/page/main',status_code=303)
+    return response
 #####read#####
 
 #####create#####
