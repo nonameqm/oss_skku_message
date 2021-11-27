@@ -12,7 +12,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}" />
+    <link rel="stylesheet" href="../../static/css/checkin.css" />
     <style>
       body {
         display: flex;
@@ -25,54 +25,42 @@
     <title>회원가입</title>
   </head>
   <body>
-    <form action = "/user/" method = "POST" enctype="application/x-www-form-urlencoded">
-      <img src="{{ url_for('static', path='skku.jpg') }}" width="300" height="300" alt="skku" />
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">ID</label>
-        <input
-          type="name"
-          class="form-control"
-          name="id"
-        />
-        <div id="emailHelp" class="form-text">사용하실 ID를 입력해주세요</div>
-      </div>
-      <div class="mb-2">
-        <label for="exampleInputPassword1" class="form-label">비밀번호</label>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-        />
-      </div>
-      <!-- <div class="mb-2">
-        <label for="exampleInputPassword1" class="form-label"
-          >비밀번호 재확인</label
-        >
-        <input
-          type="password"
-          class="form-control"
-          id="password-check"
-        />
-      </div> -->
-      <div class="mb-2">
-        <label for="exampleInputEmail1" class="form-label">이름</label>
-        <input
-          type="name"
-          class="form-control"
-          name="name"
-          aria-describedby="emailHelp"
-        />
-      </div>
-      <div class="mb-2">
-        <label for="exampleInputEmail1" class="form-label">e-mail</label>
-        <input
-          type="email"
-          class="form-control"
-          name="email"
-          aria-describedby="emailHelp"
-        />
-      <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary btn-lg">가입하기</button>
+    <form
+      action="/user/"
+      method="POST"
+      enctype="application/x-www-form-urlencoded"
+    >
+      <img src="../../static/skku.jpg" width="300" height="300" alt="skku" />
+      <div class="content">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">ID</label>
+          <input type="name" class="form-control" name="id" />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputPassword1" class="form-label">비밀번호</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputEmail1" class="form-label">이름</label>
+          <input
+            type="name"
+            class="form-control"
+            name="name"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputEmail1" class="form-label">e-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-success btn-lg">가입하기</button>
+        </div>
       </div>
     </form>
 
