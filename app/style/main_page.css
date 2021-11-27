@@ -87,7 +87,7 @@
 .side_nav{
     background-color: var(--sub-theme-color-sub);
     width: 100%;
-    min-height: 500px;
+    min-height: 800px;
     border-radius: 10px;
     margin-bottom: 10px;
 }
@@ -147,6 +147,7 @@
 }
 
 .message_list{
+    padding:10px;
     width: 100%;
     border-radius: 10px;
     border: 3px solid var(--sub-theme-color-sub);
@@ -275,4 +276,113 @@
     border-radius: 10px;
     min-height: 300px;
     border: 3px solid var(--sub-theme-color-sub);
+}
+
+.table{
+    font-size: 24px;
+    width: 100%;
+}
+
+
+
+.table > tbody > tr >td{
+    text-align: center;
+}
+
+
+
+/* Pop Up button */
+
+.popup_box{
+    position: absolute;
+    top:40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 620px;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 10001;
+    font-size: 14px;
+}
+
+.popup_head{
+    padding: 6px;
+    border-bottom: 1px solid lightgray;
+}
+
+.popup_head_wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 2px;
+    font-size: 20px;
+}
+
+.popup_title{
+    font-weight: bold;
+}
+
+.popup_body{
+    padding: 16px;
+    border-bottom: 1px solid lightgray;
+}
+
+.popup_input{
+    margin-bottom: 15px;
+}
+
+.input_title{
+    margin-bottom: 10px;
+}
+
+.input_text{
+    width: inherit;
+    padding:10px;
+    width: 95%;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+}
+
+#task_description{
+    resize: none;
+    height: 130px;
+}
+
+.popup_footer_wrapper{
+    padding: 16px;
+    float: right;
+}
+
+
+.user_button{
+    color: white;
+    font-size: 14px;
+    border: none;
+    height: 35px;
+    width: 100px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#close_button{
+    background-color: lightgray;
+    width: auto;
+    padding: 3px;
+}
+
+#save_button{
+    background-color: blue;
+    -moz-window-dragging: auto;
+    padding: 3px;
+}
+
+.actual_content{
+    width: 100%;
+    min-height: 400px;
+    border: 1px solid gray;
 }
