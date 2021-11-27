@@ -40,7 +40,7 @@ def create_app():
 
 
 
-# model.Base.metadata.create_all(bind=engine)
+model.Base.metadata.create_all(bind=engine)
 app=create_app()
 
 if __name__=="__main__":
