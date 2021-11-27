@@ -16,9 +16,8 @@ import uvicorn
 
 def create_app():
     app = FastAPI()
-    # app.mount("/static", StaticFiles(directory="static"), name="static")
+    app.mount("/static", StaticFiles(directory="static"), name="static")
     app.mount("/templates", StaticFiles(directory="templates"), name="templates")    
-
     app.add_middleware(
         CORSMiddleware,
         allow_origins=[
@@ -40,7 +39,7 @@ def create_app():
 
 
 
-model.Base.metadata.create_all(bind=engine)
+# model.Base.metadata.create_all(bind=engine)
 app=create_app()
 
 if __name__=="__main__":
