@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/main_page.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
+    <title>SKKU Message</title>
+</head>
+<body>
+    <div class="header">
+
+    </div>
+    <div class="body">
+        <div class="section">
+            <div class="wrapper">
+                <div class="alarm_header">
+                    <div class="header_name">
+                        성균관대학교 메시지 알림
+                    </div>
+                </div>
+                <div class="alarm_body">
+                    <div class="nav_content">
+                        <div class="nav_wrapper">
+                            <div class="side_nav">
+                                <ul>
+                                    <!-- list item from server update -->
+                                    <li class="list active">
+                                        <a href="#">
+                                            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                                            <span class="title">전체 메시지</span>
+                                        </a>
+                                    </li>
+                                    <li class="list">
+                                        <a href="#">
+                                            <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
+                                            <span class="title">학사 일정</span>
+                                        </a>
+                                    </li>
+                                    <li class="list">
+                                        <a href="#">
+                                            <span class="icon"><ion-icon name="checkmark-done-outline"></ion-icon></span>
+                                            <span class="title">중요</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="nav_control">
+                                <button type="button" class="button" id="keyword_button">
+                                    Keyword Set
+                                </button>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main_content">
+                        <div class="list_wrapper">
+                            <div class="message_list">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="width: 20%">작성자</th>
+                                            <th scope="col">제목</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Mark</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="wrapper">
+                <div class="recommend_header">
+                    <div class="header_name">
+                        성균관대학교 채널 추천 및 홍보
+                    </div>
+                </div>
+                <div class="recommend_body">
+                    <div class="recommend_content_wrapper">
+                        <div class="recommend_content">
+                            <div class="recommend_title">
+                                Future of SKKU : VISION 2030
+                            </div>
+                            <div class="recommend_iframe">
+                                <!-- <embed src="https://www.instagram.com/p/CWstKuRP2kG/embed/" class="page_embed" id="ig_embed"></embed> -->
+                                <iframe class="page_embed" id="youtube_embed" src="https://www.youtube.com/embed/onRY-eH3Qro" title="YouTube video player"
+                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                                <!-- <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fskkusenergy%2Fposts%2F4276903845751577&show_text=true&width=500" class="page_embed" id="facebook_embed" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> -->
+                            </div>
+                            <div class="sns_button_list">
+                                <button type="button" class="sns_button active" id="youtube_button">
+                                    SKKU Youtube
+                                </button>
+                            
+                                <button type="button" class="sns_button" id="fb_button">
+                                    SKKU Facebook
+                                </button>
+                                <button type="button" class="sns_button" id="ig_button">
+                                    SKKU Instagram
+                                </button>
+                            </div>
+                            <div class="sns_content">
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommend_footer">
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
+
+<div class="popup_box">
+    <div class="popup_head">
+        <div class="popup_head_wrapper">
+            <div class="popup_title">
+                SKKU_Message
+            </div>
+            <div class="popup_close_button">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="popup_body">
+        <div class="popup_body_wrapper">
+            <div class="popup_input">
+                <div class="input_title">제목</div>
+                <div class="title_content">
+
+                </div>
+            </div>
+
+            <div class="popup_input">
+                <div class="input_title">작성자</div>
+                <div class="writer_content">
+
+                </div>
+            </div>
+
+            <div class="popup_input">
+                <div class="input_title">내용</div>
+                <div class="acutal_content">
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="popup_footer">
+        <div class="popup_footer_wrapper">
+            <input class="user_button" type="button" id="close_button" value="Close">
+        </div>
+    </div>
+</div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../../static/javascript/main_page.js"></script>
+
+</body>
+</html>
