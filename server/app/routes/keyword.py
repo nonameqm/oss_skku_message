@@ -22,49 +22,46 @@ def get_database_session():
 
 ###########################################keyword table##############################################
 #####read#####
-@router.get("/")
-async def read_Users(request: Request, db: Session = Depends(get_database_session)):
-    records = crud.get_users(db=db)
+@router.get("/", response_model=List[schema.KeywordReturn])
+async def read_keywords(request: Request, db: Session = Depends(get_database_session)):
+    records = crud.get_keywords(db=db)
     return records
 
-@router.get("/{keyword}",response_model=schema.User)
-def read_User(request:Request, uid: str, db: Session = Depends(get_database_session)):
+@router.get("/{keyword}",response_model=schema.KeywordReturn)
+def read_keyword(request:Request, keyword: str, db: Session = Depends(get_database_session)):
 
-    item = crud.get_user(db=db, user_id = uid)
-    if item is None:
+    records = crud.get_keyword(db=db, keyword = keyword)
+    if records is None:
         raise HTTPException(status_code=404, detail="User not found")
 
-    return templates.TemplateResponse("html", {"request": request, "User": item})
+    return records
 #####read#####
-
-#####create#####
-@router.post('/')
-async def create_keyword( db:Session = Depends(get_database_session), keyword:str = Form(...)):
-    keyWord = schema.Keyword(keyword = keyword)
-    response = crud.create_keyword(db = db, keyword = keyWord)
-    if response == None:
-        raise HTTPException(status_code=412, detail="Keyword already exists")
-    response = RedirectResponse('/main',status_code=303)
-    return response
-
 
 
 @router.post('/user_key_add')
 async def create_user_key_assoc( db:Session = Depends(get_database_session), id:str = Form(...), keyword:str=Form(...)):
-    assoc = schema.UserKeyAssoc(uid = id, keyword = keyword)
-    response = crud.create_user_key_assoc(db=db, user_key_assoc=assoc)
+    msg_key_relation = crud.get_keywords_by_keyword(db= db, keyword=keyword)
+
+    relation_ids = []
+    for row in msg_key_relation:
+        relation_ids.append(row.relation_id)
+    
+    for relation_id in relation_ids:
+        assoc = schema.UserKeyAssoc(user_id = id,relation_id = relation_id)
+        response = crud.create_user_key_assoc(db=db, user_key_assoc=assoc)
     if response == None:
         raise HTTPException(status_code=412, detail="User ID already exists")
-    response = RedirectResponse('/login',status_code=303)
+    response = HTTPException(status_code=201, detail="Keyword Created")
     return response
 
-@router.post('/user_key_msg')
-async def get_msg_user_key( db:Session = Depends(get_database_session), id:str = Form(...)):
-    
-    response = crud.get_msg_by_user_key(db=db, uid=id)
+@router.get('/user_keys', response_model=List[schema.KeywordReturn])
+def get_user_keys( db:Session = Depends(get_database_session), id:str = Form(...)):
+    response = crud.get_keyword_by_uid(db=db, uid=id)
     print(response)
     if response == None:
         raise HTTPException(status_code=412, detail="User ID already exists")
-    response = RedirectResponse('/login',status_code=303)
+    
     return response
+
+
  

@@ -3,7 +3,7 @@ from fastapi.exceptions import HTTPException
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from typing import List
-
+from datetime import datetime
 from starlette.responses import RedirectResponse
 from database.database import SessionLocal
 from database import schema, crud
@@ -22,12 +22,12 @@ def get_database_session():
     finally:
         db.close()
 
-@router.get("/message", response_model=List[schema.User])
+@router.get("/message" ,response_model=List[schema.MessageReturn])
 async def read_msgs(request: Request, db: Session = Depends(get_database_session)):
-    records = crud.get_users(db=db)
+    records = crud.get_msgs(db=db)
     return records
 
-@router.get("/message/{mid}",response_model=schema.User)
+@router.get("/message/{mid}",response_model=schema.MessageReturn)
 def read_msg(request:Request, mid: str, db: Session = Depends(get_database_session)):
 
     item = crud.get_msg(db=db,msg_id = mid)
@@ -39,11 +39,13 @@ def read_msg(request:Request, mid: str, db: Session = Depends(get_database_sessi
 
 #####create#####
 @router.post('/message/')
-async def create_msg( db:Session = Depends(get_database_session), contents:str=Form(...), keyword1:str = Form(...),keyword2:str = Form(...),keyword3:str = Form(...)):
-    msg = schema.Message(contents = contents)
-    keywords = [keyword1,keyword2,keyword3]
-    keywords = keywords.remove('none')
-    response = crud.create_msg(db = db, msg=msg, keywords = keywords )
+async def create_msg( db:Session = Depends(get_database_session),title:str=Form(...), contents:str=Form(...), keyword1:str = Form(...),keyword2:str = Form(...),keyword3:str = Form(...)):
+
+    msg = schema.Message(title=title, contents = contents, datetime = datetime.now())
+    keywords = [keyword1, keyword2, keyword3]
+    keywords.remove('none')
+    print(keywords)
+    response = crud.create_msg(db = db, msg=msg, keywords = keywords)
     if response == None:
         raise HTTPException(status_code=412, detail="User ID already exists")
     response = RedirectResponse('/main',status_code=303)

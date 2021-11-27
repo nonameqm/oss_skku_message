@@ -1,6 +1,7 @@
 from sqlalchemy.schema import Column
 from sqlalchemy import ForeignKey, Table, PrimaryKeyConstraint
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.types import String, Integer, Text
 from database.database import Base
 
@@ -19,23 +20,6 @@ from database.database import Base
 #     Column('keyword', ForeignKey('keywords.keyword'))
 # )
 
-class UserKeyAssoc(Base):
-    __tablename__ = "user_key_assoc"
-    __table_args__ = (
-        PrimaryKeyConstraint('uid', 'keyword'),
-    )
-
-    uid = Column(ForeignKey('users.uid'))
-    keyword = Column(ForeignKey('keywords.keyword'))
-
-class MsgKeyAssoc(Base):
-    __tablename__ = "msg_key_assoc"
-    __table_args__ = (
-        PrimaryKeyConstraint('mid', 'keyword'),
-    )
-    mid = Column(ForeignKey('messages.mid'))
-    keyword = Column(ForeignKey('keywords.keyword'))
-
 
 class User(Base):
     __tablename__ = "users"
@@ -43,14 +27,28 @@ class User(Base):
     email = Column(String(50), unique=True)
     name = Column(String(20))
     password = Column(String(50))
-    
 
 class Message(Base):
     __tablename__ = "messages"
     mid = Column(Integer, primary_key=True, unique= True, autoincrement=True)
+    title = Column(String(20))
     contents = Column(String(500))
-
+    datetime = Column(DateTime)
+    Key = relationship("Keyword", back_populates="msg")
 
 class Keyword(Base):
     __tablename__ = "keywords"
-    keyword = Column(String(20), primary_key=True)
+    relation_id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
+    mid = Column(ForeignKey(Message.mid))
+    keyword = Column(String(20))
+    msg = relationship("Message", back_populates="Key")
+    
+
+class UserKeyAssoc(Base):
+    __tablename__ = "user_key_assoc"
+    __table_args__ = (
+        PrimaryKeyConstraint('user_id', 'relation_id'),
+    )
+
+    user_id = Column(ForeignKey('users.uid'))
+    relation_id = Column(ForeignKey('keywords.relation_id'))

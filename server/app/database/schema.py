@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from typing import List, Optional
 from pydantic import BaseModel
 
@@ -14,25 +14,30 @@ class User(BaseModel):
 
 
 class Message(BaseModel):
-    mid:int
+    
+    title:str
     contents: str
+    datetime: datetime
     class Config:
         orm_mode = True
+
+class MessageReturn(Message):
+    mid: int
 
 
 class Keyword(BaseModel):
+    
     keyword : str
+    mid:int
     class Config:
         orm_mode = True
+
+class KeywordReturn(Keyword):
+    relation_id: int
 
 class UserKeyAssoc(BaseModel):
-    uid:str
-    keyword:str
+    user_id:str
+    relation_id:int
     class Config:
         orm_mode = True
 
-class MsgKeyAssoc(BaseModel):
-    mid:int
-    keyword:str
-    class Config:
-        orm_mode = True

@@ -44,7 +44,7 @@ async def create_user( db:Session = Depends(get_database_session), id:str = Form
     response = crud.create_user(db = db, user=user)
     if response == None:
         raise HTTPException(status_code=412, detail="User ID already exists")
-    response = RedirectResponse('/login',status_code=303)
+    response = RedirectResponse('/page/login',status_code=303)
     return response
 #####create#####
 ###########################################user table##############################################
