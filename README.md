@@ -2,7 +2,7 @@
 oss_skku_message_system
 
 ## THE NAME OF APP
-**_앱이름_**
+**_SKKU-MESSAGE-MANAGER_**
 ## screenshots of your app
 ![앱이미지](./server/app/static/skku.jpg)
 ## 유튜브링크
