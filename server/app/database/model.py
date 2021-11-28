@@ -23,6 +23,11 @@ from database.database import Base
 
 class User(Base):
     __tablename__ = "users"
+    __table_args__= (
+        {
+            "mysql_default_charset": "utf8"
+        }
+    )
     uid = Column(String(20), primary_key=True)
     email = Column(String(50), unique=True)
     name = Column(String(20))
@@ -30,14 +35,24 @@ class User(Base):
 
 class Message(Base):
     __tablename__ = "messages"
+    __table_args__= (
+        {
+            "mysql_default_charset": "utf8"
+        }
+    )
     mid = Column(Integer, primary_key=True, unique= True, autoincrement=True)
-    title = Column(String(20))
+    title = Column(String(100))
     contents = Column(String(500))
     datetime = Column(DateTime)
     Key = relationship("Keyword", back_populates="msg")
 
 class Keyword(Base):
     __tablename__ = "keywords"
+    __table_args__= (
+        {
+            "mysql_default_charset": "utf8"
+        }
+    )
     relation_id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
     mid = Column(ForeignKey(Message.mid))
     keyword = Column(String(20))

@@ -30,6 +30,14 @@ def create_user(db: Session, user: schema.User):
 def get_msg(db: Session, msg_id: int):
     return db.query(model.Message).filter(model.Message.mid == msg_id).first()
 
+def get_msg_by_keyword(db:Session, keyword:str):
+    obj = db.query(model.Message).join(
+        model.Keyword,
+        model.Keyword.mid == model.Message.mid and  model.Keyword.keyword == keyword
+    ).all()
+    return obj
+
+
 
 def get_msgs(db: Session, skip: int = 0, limit: int = 100):
     return db.query(model.Message).offset(skip).limit(limit).all()
@@ -97,6 +105,16 @@ def get_keyword_by_uid(db:Session, uid:str):
     obj = db.query(model.Keyword ).join(
         model.UserKeyAssoc,
         model.Keyword.relation_id == model.UserKeyAssoc.relation_id
+    ).all()
+    return obj
+
+def get_msg_by_user_keyword(db:Session, uid:str):
+    obj = db.query(model.Message).join(
+        model.Keyword,
+        model.Keyword.mid == model.Message.mid
+    ).join(
+        model.UserKeyAssoc,
+        model.UserKeyAssoc.relation_id == model.Keyword.relation_id and model.UserKeyAssoc.user_id == uid
     ).all()
     return obj
 

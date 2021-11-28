@@ -24,49 +24,52 @@
       }
     </style>
     <title>로그인</title>
-
   </head>
   <body>
-    <form action = >
+    <form
+      action="/user/login"
+      method="post"
+      enctype="application/x-www-form-urlencoded"
+    >
       <img src="../../static/skku.jpg" width="300" height="300" alt="skku" />
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">ID</label>
-        <input
-          type="name"
-          class="form-control"
-          id="exampleInputEmail1"
-          name = "id"
-          aria-describedby="emailHelp"
-        />
-        <div id="emailHelp" class="form-text">ID를 입력해주세요</div>
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-        />
+      <div class="content">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">ID</label>
+          <input
+            type="name"
+            class="form-control"
+            id="exampleInputEmail1"
+            name="id"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">ID를 입력해주세요</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+          />
 
-        <div id="emailHelp" class="form-text">Password를 입력해주세요</div>
+          <div id="emailHelp" class="form-text">Password를 입력해주세요</div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success" style="width: 110px">
+            로그인
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            style="width: 110px"
+            formaction="/page/checkin"
+            formmethod="get"
+          >
+            회원가입
+          </button>
+        </div>
       </div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary" style="width: 110px">
-          로그인
-        </button>
-      </div>
-    </form>
-
-    <form>
-      <button type="submit" class="btn btn-primary" style="width: 110px">
-        회원가입
-      </button>
-    </form>
-    
-    <form>
-      <button type="submit" class="btn btn-primary" style="width: 110px">
-        ID/PW찾기
-      </button>
     </form>
 
     <!-- Optional JavaScript; choose one of the two! -->
