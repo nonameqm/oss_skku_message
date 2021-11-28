@@ -98,23 +98,6 @@ def create_keyword(db: Session, keyword: schema.Keyword):
         db.refresh(db_keyword)
         return db_keyword
 
-def get_user_key_assoc(db:Session, assoc: schema.UserKeyAssoc):
-    obj = db.query(model.UserKeyAssoc).filter(
-            model.UserKeyAssoc.user_id == assoc.user_id and model.UserKeyAssoc.relation_id == assoc.relation_id
-        ).all()
-    return obj
-
-def create_user_key_assoc(db:Session, user_key_assoc: schema.UserKeyAssoc):
-    
-    if not get_user_key_assoc(db, assoc = user_key_assoc):
-        db_user_key_assoc = model.UserKeyAssoc(**user_key_assoc.dict())
-        db.add(db_user_key_assoc)
-        db.commit()
-        db.refresh(db_user_key_assoc)
-        return user_key_assoc
-    else:
-        return None
-
 
 def get_keyword_by_uid(db:Session, uid:str):
     obj = db.query(model.Keyword ).join(
@@ -133,32 +116,33 @@ def get_msg_by_user_keyword(db:Session, uid:str):
     ).all()
     return obj
 
-# def get_msg_key_assoc(db:Session, assoc: schema.MsgKeyAssoc):
-#     obj = db.query(model.MsgKeyAssoc).filter(
-#             model.MsgKeyAssoc.mid == assoc.mid and model.MsgKeyAssoc.keyword == assoc.keyword
-#         ).all()
-#     return obj
+def get_insta(db:Session, limit = 100):
+    item = db.query(model.Insta).limit(limit).all()
+    return item
 
+def get_youtube(db:Session, limit = 100):
+    item = db.query(model.Insta).limit(limit).all()
+    return item
 
+def get_insta_by_title(db:Session, title:str):
+    item = db.query(model.Insta).filter(model.Insta.title == title).first()
+    return item
 
-# def get_msg_by_keyword(db:Session, assoc: schema.MsgKeyAssoc):
-#     obj = db.query(model.MsgKeyAssoc).filter(
-#             model.MsgKeyAssoc.keyword == assoc.keyword 
-#         ).all()
-#     return obj
+def get_youtube_by_title(db:Session, title:str):
+    item = db.query(model.Youtube).filter(model.Youtube.title == title).first()
+    return item
 
-# def get_msg_by_user_key(db:Session, uid: str):
-#     obj = db.join(
-#         model.Message
-#     ).join(
-#         model.MsgKeyAssoc
-#     ).join(
-#         model.UserKeyAssoc
-#     ).filter(
-#         model.UserKeyAssoc.uid == uid
-#     ).all()
+def create_insta(db:Session, insta:schema.Insta):
+    db_insta = model.Insta(**insta.dict())
+    db.add(db_insta)
+    db.commit()
+    db.refresh(db_insta)
+    return db_insta
 
-#     return obj
-
-
+def create_youtube(db:Session, youtube:schema.Youtube):
+    db_youtube = model.Youtube(**youtube.dict())
+    db.add(db_youtube)
+    db.commit()
+    db.refresh(db_youtube)
+    return db_youtube
 

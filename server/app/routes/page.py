@@ -33,11 +33,15 @@ def checkin_render(request:Request, uid:str,db: Session = Depends(get_database_s
     message_list = crud.get_msgs(db=db)
     userinfo = crud.get_user(db = db, user_id=uid)
     keywords = crud.get_keywords(db = db)
+    instas = crud.get_insta(db=db,limit=5)
+    youtubes = crud.get_youtube(db=db,limit=5)
     context={
         'request': request, 
         'data': message_list,
         'user': userinfo,
-        'keywords':keywords
+        'keywords':keywords,
+        'instas':instas,
+        'youtubes':youtubes
     }
     return templates.TemplateResponse('pages/main_page.html', context = context)
 
@@ -46,4 +50,3 @@ def checkin_render(request:Request):
     return templates.TemplateResponse('pages/admin.html', context = {'request':request})
     
 ###########################################rendering##############################################
-

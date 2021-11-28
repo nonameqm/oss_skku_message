@@ -11,7 +11,7 @@ from database.database import SessionLocal, engine
 from database import model
 from typing import List
 
-from routes import keyword, message, page, user
+from routes import keyword, message, page, user, sns
 import uvicorn
 
 def create_app():
@@ -32,6 +32,7 @@ def create_app():
     app.include_router(message.router)
     app.include_router(page.router)
     app.include_router(user.router)
+    app.include_router(sns.router)
     
 
 

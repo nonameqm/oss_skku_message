@@ -58,7 +58,27 @@ class Keyword(Base):
     mid = Column(ForeignKey(Message.mid))
     keyword = Column(String(20))
     msg = relationship("Message", back_populates="Key")
-    
+
+class Insta(Base):
+    __tablename__ = "insta"
+    __table_args__= (
+        {
+            "mysql_default_charset": "utf8"
+        }
+    )
+    title = Column(String(75), primary_key=True, unique=True)
+    url = Column(String(20))
+
+class Youtube(Base):
+    __tablename__ = "youtube"
+    __table_args__= (
+        {
+            "mysql_default_charset": "utf8"
+        }
+    )
+    title = Column(String(75), primary_key=True, unique=True)
+    url = Column(String(20))
+
 
 # class UserKeyAssoc(Base):
 #     __tablename__ = "user_key_assoc"
