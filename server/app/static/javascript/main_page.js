@@ -54,7 +54,6 @@ navlist.forEach((listitem) => {
           },
         });
       }
-      
     }
   };
 });
@@ -92,6 +91,98 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#keyword_close_button").click(function(){
     $(".keyword_box").hide();
   })
+
+  $('#keyword_set_button').click(function(){
+    new_keyword_list=[]
+
+    button_list=document.getElementsByClassName('keyword_set_button')
+    for(i=0;i<button_list.length;i++){
+      if(button_list[i].className=='keyword_set_button active'){
+        new_keyword = button_list[i].textContent.trim()
+        new_keyword_list.push(new_keyword)
+      }
+    }
+        console.log(new_keyword_list);
+
+    $('.sn').remove();
+    new_nav_list=make_new_side_nav(new_keyword_list);
+    $('.side_nav').append(new_nav_list);
+
+    let navlist = document.querySelectorAll(".list");
+    navlist.forEach((listitem) => {
+      listitem.onclick = function () {
+        if (listitem.className != "list active") {
+          let j = 0;
+          while (j < navlist.length) {
+            navlist[j++].className = "list";
+          }
+          listitem.className = "list active";
+          nav_keyword = (listitem.textContent.trim());
+          if (nav_keyword == '전체 메시지') {
+            $.ajax({
+              type: "GET",
+              url: `/message/message`,
+              dataType: "text",
+              error: function () {
+                alert("Fail!");
+              },
+              success: function (data) {
+                message = JSON.parse(data);
+                console.log(message);
+                new_table_string = make_new_table(message);
+                $('#message_table').remove();
+                $('.message_list').append(new_table_string);
+                $(".message_item").click(function () {
+                  var message_id = $(this).attr("id");
+                  popup_show(message_id);
+                });
+              },
+            });
+          } else {
+            $.ajax({
+              type: "GET",
+              url: `/message/message/keyword/${nav_keyword}`,
+              dataType: "text",
+              error: function () {
+                alert("Fail!");
+              },
+              success: function (data) {
+                message = JSON.parse(data);
+                console.log(message);
+                new_table_string = make_new_table(message);
+                $('#message_table').remove();
+                $('.message_list').append(new_table_string);
+                $(".message_item").click(function () {
+                  var message_id = $(this).attr("id");
+                  popup_show(message_id);
+                });
+              },
+            });
+          }
+        }
+      };
+    });
+
+
+
+
+    $('.keyword_box').hide();
+
+  })
+
+
+  $('.keyword_set_button').click(function () {
+    var nav_item=$(this).text().trim();
+    nav_class=($(this).attr('class'));
+    console.log(nav_class)
+    if(nav_class==='keyword_set_button'){
+      $(this).attr('class', 'keyword_set_button active')
+      console.log(1);
+    }else{
+      $(this).attr('class', 'keyword_set_button')
+    }
+  })
+
 });
 
 function popup_hide() {
@@ -99,6 +190,11 @@ function popup_hide() {
   $(".popup_box").hide();
 }
 
+function set_keyword(keyword_list){
+  $.ajax({
+    
+  })
+}
 
 
 function popup_show(mid) {
@@ -137,8 +233,7 @@ function popup_show(mid) {
 
 
 function make_new_table(message_list){
-  message_data_string=''
-
+  message_data_string='';
   for (var i=0;i<(message_list.length);i++){
     date_data=new Date(message_list[i].datetime);
     date=date_data.getFullYear()+'-'+date_data.getMonth()+'-'+date_data.getDate();
@@ -165,6 +260,43 @@ function make_new_table(message_list){
             ${message_data_string}
         </tbody>
     </table>
-  `
+  `;
   return return_data;
+}
+
+function make_nav_item(keyword_list){
+  return_string=''
+  for(var i=0;i<keyword_list.length;i++){
+    message_string = `
+      <li class="list" id="calendar">
+        <a href="#">
+            <span class="icon">
+                <ion-icon name="checkmark-outline"></ion-icon>
+            </span>
+            <span class="title">${keyword_list[i]}</span>
+        </a>
+      </li>
+    `
+    return_string=return_string+message_string
+  }
+  
+  return return_string;
+
+}
+  
+function make_new_side_nav(keyword_list){
+  new_item_string=make_nav_item(keyword_list)
+  return_string=`
+  <ul class="sn">
+      <li class="list active" id="whole">
+          <a href="#">
+              <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+              <span class="title">전체 메시지</span>
+          </a>
+      </li>
+      ${new_item_string}
+  </ul>
+  `
+
+  return return_string;
 }
