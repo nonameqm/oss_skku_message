@@ -6,7 +6,7 @@ oss_skku_message_system
 ## screenshots of your app
 ![앱이미지](./server/app/static/skku.jpg)
 ## 유튜브링크
-[Youtube](https://youtu.be/Vcb1SM588PE)
+[Youtube](https://www.youtube.com/watch?v=TVhHDLBnD54)
 ## 설치안내, 사용방법,예시 등
 <ol>
   <li>설치안내
