@@ -22,9 +22,10 @@ def get_database_session():
 
 ###########################################keyword table##############################################
 #####read#####
-@router.get("/", response_model=List[schema.KeywordReturn])
+@router.get("/all_distinct")
 async def read_keywords(request: Request, db: Session = Depends(get_database_session)):
     records = crud.get_keywords(db=db)
+    print(records)
     return records
 
 @router.get("/{keyword}",response_model=schema.KeywordReturn)
@@ -36,13 +37,11 @@ def read_keyword(request:Request, keyword: str, db: Session = Depends(get_databa
 
     return records
 #####read#####
-    return response
+
 
 @router.get('/user_id/{uid}', response_model=List[schema.KeywordReturn])
 async def get_user_keys(request:Request, uid:str, db:Session = Depends(get_database_session)):
-    print("hello")
     response = crud.get_keyword_by_uid(db=db, uid=uid)
-    print(response)
     if response == None:
         raise HTTPException(status_code=412, detail="User ID already exists")
     

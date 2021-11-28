@@ -1,7 +1,9 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, distinct
 from database import model, schema
 from sqlalchemy.types import String, Integer, Text
+
+
 
 
 def get_user(db: Session, user_id: str):
@@ -69,7 +71,7 @@ def get_keyword(db: Session, keyword: str):
 
 
 def get_keywords(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(model.Keyword).offset(skip).limit(limit).all()
+    return db.query(model.Keyword.keyword).distinct().all()
 
 
 def get_keywords_by_keyword(db: Session, keyword: str):

@@ -32,6 +32,11 @@ class Keyword(BaseModel):
     class Config:
         orm_mode = True
 
+class KeywordsDistinct(BaseModel):
+    keyword : str
+    class Config:
+        orm_mode = True
+
 class KeywordReturn(Keyword):
     relation_id: int
 
