@@ -62,7 +62,8 @@ async def create_msg( db:Session = Depends(get_database_session),title:str=Form(
 
     msg = schema.Message(title=title, contents = contents, datetime = datetime.now())
     keywords = list(set([keyword1, keyword2, keyword3]))
-    keywords.remove('none')
+    if 'none' in keywords:
+        keywords.remove('none')
     print(keywords)
     response = crud.create_msg(db = db, msg=msg, keywords = keywords)
     if response == None:
