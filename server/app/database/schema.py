@@ -8,8 +8,7 @@ class User(BaseModel):
     email: str
     name: str
     password: str
-    keyword:str
-    
+    keywords:str
     class Config:
         orm_mode = True
 
@@ -46,4 +45,17 @@ class UserKeyAssoc(BaseModel):
     relation_id:int
     class Config:
         orm_mode = True
+
+class Insta(BaseModel):
+    title:str
+    url:str
+    class Config:
+        orm_mode = True
+
+class Youtube(BaseModel):
+    title:str
+    url:str
+    class Config:
+        orm_mode = True
+
 
