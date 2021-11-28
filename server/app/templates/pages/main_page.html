@@ -20,7 +20,7 @@
             <div class="wrapper">
                 <div class="alarm_header">
                     <div class="header_name">
-                        성균관대학교 메시지 알림
+                        성균관대학교 메시지 알림창
                     </div>
                 </div>
                 <div class="alarm_body">
@@ -29,19 +29,19 @@
                             <div class="side_nav">
                                 <ul>
                                     <!-- list item from server update -->
-                                    <li class="list active">
+                                    <li class="list active" id="whole">
                                         <a href="#">
                                             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                                             <span class="title">전체 메시지</span>
                                         </a>
                                     </li>
-                                    <li class="list">
+                                    <li class="list" id="calendar">
                                         <a href="#">
                                             <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
                                             <span class="title">학사 일정</span>
                                         </a>
                                     </li>
-                                    <li class="list">
+                                    <li class="list" id="importance">
                                         <a href="#">
                                             <span class="icon"><ion-icon name="checkmark-done-outline"></ion-icon></span>
                                             <span class="title">중요</span>
@@ -59,46 +59,23 @@
                     <div class="main_content">
                         <div class="list_wrapper">
                             <div class="message_list">
-                                <table class="table">
+                                <table class="table" id="message_table">
                                     <thead>
                                         <tr>
-                                            <th scope="col" style="width: 20%">작성자</th>
+                                            <th scope="col" style="width: 5%;">
+                                            #</th>
+                                            <th scope="col" style="width: 20%">날짜</th>
                                             <th scope="col">제목</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for message in data %}
                                         <tr>
-                                            <td>Mark</td>
-                                            <td>@mdo</td>
+                                            <td>{{message.mid}}</td>
+                                            <td>{{message.datetime.strftime('%Y-%m-%d')}}</td>
+                                            <td>{{message.title}}</td>
                                         </tr>
-                                        <tr>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                        </tr>
+                                        {% endfor %}
                                     </tbody>
 
                                 </table> 
