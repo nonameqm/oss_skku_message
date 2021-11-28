@@ -36,6 +36,15 @@ def read_User(request:Request, uid: str, db: Session = Depends(get_database_sess
 
     return templates.TemplateResponse("html", {"request": request, "User": item})
 
+@router.get("change_key/{uid}",response_model=schema.User)
+def change_keyword(request:Request, uid: str, db: Session = Depends(get_database_session)):
+
+    item = crud.get_user(db=db, user_id = uid)
+    if item is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return templates.TemplateResponse("html", {"request": request, "User": item})
+
 @router.post("/login")
 def logincheck(db:Session = Depends(get_database_session), id:str = Form(...), password:str=Form(...)):
     item = crud.get_user(db=db, user_id = id)
