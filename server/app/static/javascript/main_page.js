@@ -15,9 +15,10 @@ navlist.forEach((listitem)=>{
     
       $.ajax({
         type: "GET",
-        url: "/message/message",
+        url: "/message/keyword/총학생회",
         dataType: "text",
         error: function () {
+          
           alert('Fail!')
         },
         success: function (data) {
@@ -55,43 +56,55 @@ document.addEventListener('DOMContentLoaded', () => {
   $('.popup_box').hide();
 
   $('#keyword_button').click(function(){
-    popup_show()
+    popup_show(1)
   })
   $('#close_button').click(function () {
     popup_hide();
   })
 
-  $("#message_table").click(function(){
-    var str=""
-    var td=new Array()
-
-    var tr=$(this);
-    var td= tr.children();
-
-    console.log(tr.text());
+  $(".message_item").click(function(){
+    var message_id=$(this).attr("id");
+    popup_show(message_id);
   })
 })
 
 
-function popup_show() {
-  var obj = document.createElement("div");
-  with (obj.style) {
-    left = 0;
-    top = 0;
-    width = "100%";
-    height = "100%";
-    backgroundColor = "#000";
-    filter = "Alpha(Opacity=50)";
-    opacity = "0.6";
-    position = "absolute";
-    zIndex = "10000";
-  }
-  obj.id = "iframeBg"
-  document.body.appendChild(obj);
-  $('.popup_box').show();
-}
 
 function popup_hide() {
   $('#iframeBg').remove();
   $('.popup_box').hide();
+}
+
+
+function popup_show(mid){
+  $.ajax({
+    type: "GET",
+    url: `/message/message/${mid}`,
+    dataType: "text",
+    error: function () {
+      alert('Fail!')
+    },
+    success: function (data) {
+      var obj = document.createElement("div");
+      with (obj.style) {
+        left = 0;
+        top = 0;
+        width = "200%";
+        height = "100vh";
+        backgroundColor = "#000";
+        filter = "Alpha(Opacity=50)";
+        opacity = "0.6";
+        position = "absolute";
+        zIndex = "10000";
+      }
+      obj.id = "iframeBg"
+      document.body.appendChild(obj);
+
+      message=JSON.parse(data)
+      $('.actual_content').text(message.content);
+      $('.title_content').tex(message.title);
+      $('.popup_box').show();
+    }
+  })
+
 }

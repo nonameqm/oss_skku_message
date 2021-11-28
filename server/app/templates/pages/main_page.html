@@ -70,7 +70,7 @@
                                     </thead>
                                     <tbody>
                                         {% for message in data %}
-                                        <tr>
+                                        <tr class="message_item" id="{{message.mid}}">
                                             <td>{{message.mid}}</td>
                                             <td>{{message.datetime.strftime('%Y-%m-%d')}}</td>
                                             <td>{{message.title}}</td>
@@ -157,12 +157,6 @@
                 </div>
             </div>
 
-            <div class="popup_input">
-                <div class="input_title">작성자</div>
-                <div class="writer_content">
-
-                </div>
-            </div>
 
             <div class="popup_input">
                 <div class="input_title">내용</div>
