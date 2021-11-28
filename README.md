@@ -3,14 +3,13 @@ oss_skku_message_system
 
 ## THE NAME OF APP
 **_SKKU-MESSAGE-MANAGER_**
-## screenshots of your app
+## screenshots of your APP
 ![앱이미지1](./screenshot1.jpg)
 ![앱이미지2](./screenshot1.jpg)
 ![앱이미지3](./screenshot1.jpg)
 ![앱이미지4](./screenshot1.jpg)
 ![앱이미지5](./screenshot1.jpg)
 ## 유튜브링크
-<<<<<<< HEAD
 
 [Youtube](https://www.youtube.com/watch?v=6Y1kWcrFKQo)
 
@@ -38,13 +37,11 @@ shell script:
 ```
 python3 server/app/main.py
 ```
-
-For database access contact to YoungJaeBae: qodudwos@gmail.com
-
 [address]https://localhost:8000/page/login
 =======
+For database access contact to YoungJaeBae: qodudwos@gmail.com
+
 [Youtube](https://www.youtube.com/watch?v=TVhHDLBnD54)
-## 설치안내, 사용방법,예시 등
 <ol>
   <li>설치안내
     <ul>
