@@ -15,7 +15,7 @@ navlist.forEach((listitem)=>{
     
       $.ajax({
         type: "GET",
-        url: "/message/keyword/총학생회",
+        url: "../message/message/keyword/총학생회",
         dataType: "text",
         error: function () {
           
@@ -27,7 +27,6 @@ navlist.forEach((listitem)=>{
       })
     
     }
-
   }
 });
 
@@ -68,13 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 })
 
-
-
 function popup_hide() {
   $('#iframeBg').remove();
   $('.popup_box').hide();
 }
-
 
 function popup_show(mid){
   $.ajax({
@@ -106,5 +102,10 @@ function popup_show(mid){
       $('.popup_box').show();
     }
   })
+
+}
+
+
+function keyword_set(){
 
 }
