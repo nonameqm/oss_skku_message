@@ -11,7 +11,6 @@ navlist.forEach((listitem) => {
         navlist[j++].className = "list";
       }
       listitem.className = "list active";
-      console.log(listitem.id);
       $.ajax({
         type: "GET",
         url: "/message/message/keyword/코로나",
@@ -20,7 +19,11 @@ navlist.forEach((listitem) => {
           alert("Fail!");
         },
         success: function (data) {
-          alert("Data : " + data);
+          message = JSON.parse(data);
+          console.log(message);
+          new_table_string=make_new_table(message);
+          $('#message_table').remove();
+          $('.message_list').append(new_table_string);
         },
       });
     }
@@ -40,9 +43,6 @@ btnlist.forEach((button) => {
   };
 });
 
-button.onclick = function () {
-  //keyword_setting pop up
-};
 
 document.addEventListener("DOMContentLoaded", () => {
   $(".popup_box").hide();
@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#close_button").click(function () {
     popup_hide();
   });
+
+  $(".keyword_box").hide();
 
   $(".message_item").click(function () {
     var message_id = $(this).attr("id");
@@ -90,9 +92,45 @@ function popup_show(mid) {
       document.body.appendChild(obj);
 
       message = JSON.parse(data);
-      $(".actual_content").text(message.content);
+      console.log(message.contents);
       $(".title_content").text(message.title);
+      $(".actual_content").text(message.contents);
       $(".popup_box").show();
     },
   });
+}
+
+
+
+function make_new_table(message_list){
+  message_data_string=''
+
+  for (var i=0;i<(message_list.length);i++){
+    date_data=new Date(message_list[i].datetime);
+    date=date_data.getFullYear()+'-'+date_data.getMonth()+'-'+date_data.getDate();
+    row_data=`
+      <tr class="message_item" id="${message_list[i].mid}">
+        <td>${message_list[i].mid}</td>
+        <td>${date}</td>
+        <td>${message_list[i].title}</td>
+      </tr>
+    `
+    message_data_string=message_data_string+row_data;
+  }
+  return_data=`
+    <table class="table" id="message_table">
+      <thead>
+            <tr>
+                <th scope="col" style="width: 5%;">
+                #</th>
+                <th scope="col" style="width: 20%">날짜</th>
+                <th scope="col">제목</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${message_data_string}
+        </tbody>
+    </table>
+  `
+  return return_data;
 }
