@@ -14,7 +14,7 @@ navlist.forEach((listitem) => {
       console.log(listitem.id);
       $.ajax({
         type: "GET",
-        url: "../message/message/keyword/총학생회",
+        url: "/message/message/keyword/코로나",
         dataType: "text",
         error: function () {
           alert("Fail!");
@@ -91,7 +91,7 @@ function popup_show(mid) {
 
       message = JSON.parse(data);
       $(".actual_content").text(message.content);
-      $(".title_content").tex(message.title);
+      $(".title_content").text(message.title);
       $(".popup_box").show();
     },
   });
