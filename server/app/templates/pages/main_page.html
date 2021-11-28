@@ -40,7 +40,7 @@
                                             <span class="title">전체 메시지</span>
                                         </a>
                                     </li>
-                                    {% if user_keyword %}
+                                    {% if user_keyword and user_keyword[0]!='' %}
                                         {% for keyword in user_keyword %}
                                             <li class="list" id="calendar">
                                                 <a href="#">
