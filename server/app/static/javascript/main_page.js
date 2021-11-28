@@ -75,20 +75,23 @@ btnlist.forEach((button) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   $(".popup_box").hide();
+  $(".keyword_box").hide();
 
   $("#keyword_button").click(function () {
-    popup_show(1);
+    $(".keyword_box").show();
   });
   $("#close_button").click(function () {
     popup_hide();
   });
 
-  $(".keyword_box").hide();
-
   $(".message_item").click(function () {
     var message_id = $(this).attr("id");
     popup_show(message_id);
   });
+
+  $("#keyword_close_button").click(function(){
+    $(".keyword_box").hide();
+  })
 });
 
 function popup_hide() {

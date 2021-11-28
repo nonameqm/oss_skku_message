@@ -15,6 +15,7 @@
     <div class="header">
         <div class="welcome_message">
             Welcome! {{user}}
+            {{keywords}}
         </div>
     </div>
     <div class="body">
@@ -43,12 +44,18 @@
                                             <span class="title">학사 일정</span>
                                         </a>
                                     </li>
-                                    <li class="list" id="importance">
-                                        <a href="#">
-                                            <span class="icon"><ion-icon name="checkmark-done-outline"></ion-icon></span>
-                                            <span class="title">중요</span>
-                                        </a>
-                                    </li>
+                                    {% if keywords %}
+                                        {% for keyword in keywords%}
+                                            <li class="list" id="calendar">
+                                                <a href="#">
+                                                    <span class="icon">
+                                                        <ion-icon name="calendar-outline"></ion-icon>
+                                                    </span>
+                                                    <span class="title">keyword.keyword</span>
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    {% endif %}
                                 </ul>
                             </div>
                             <div class="nav_control">
@@ -190,6 +197,10 @@
                     </button>
                 </div>
             </div>
+            <div class="keyword_box_footer">
+                <input class="user_button" type="button" id="keyword_close_button" value="Close">
+            </div>
+            
         </div>
 
 
