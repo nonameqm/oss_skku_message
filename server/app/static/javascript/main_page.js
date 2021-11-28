@@ -193,25 +193,37 @@ document.addEventListener("DOMContentLoaded", () => {
       $("#youtube_table").hide(); 
       $("#instagram_table").show();
 
-      }
+      var src_url=document.getElementById('instagram').getAttribute('name')
+      
+      embed_string = make_new_embed(type, src_url)
+      $('.page_embed').remove()
+      $('.recommend_iframe').append(embed_string);
+    }
   })
 
   $('#youtube_button').click(function () {
     if (type != 'youtube') {
       type = 'youtube';
       $("#instagram_table").hide();
-      $("#youtube_table").show()
+      $("#youtube_table").show();
+      
+      
+      var src_url = document.getElementById('youtube').getAttribute('name')
+      embed_string = make_new_embed(type, src_url)
+      $('.page_embed').remove()
+      $('.recommend_iframe').append(embed_string);
     }
   })
 
   $('.embed_item').click(function () {
-    title=($(this).attr('name'))
+    src_url=($(this).attr('name'))
     type=($(this).attr('id'))
-    console.log(title+' '+type)
     $('.recommend_title').text($(this).children('td').text())
+    embed_string=make_new_embed(type, src_url)
+    $('.page_embed').remove()
+    $('.recommend_iframe').append(embed_string);
+
   })
-
-
 
 
 
@@ -251,7 +263,7 @@ function popup_show(mid) {
         left = 0;
         top = 0;
         width = "200%";
-        height = "100vh";
+        height = "1600px";
         backgroundColor = "#000";
         filter = "Alpha(Opacity=50)";
         opacity = "0.6";

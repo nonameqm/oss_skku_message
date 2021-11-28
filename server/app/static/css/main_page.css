@@ -17,12 +17,26 @@
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
     box-sizing: border-box;
+    padding: 0;
 }
 
 .header{
     height: 40px;
     background-color: var(--sub-theme-color-sub);
     padding-bottom: 10px;
+    width: 100%;
+}
+
+#logout_button{
+    background-color: red;
+    margin: 10px;
+    float: right;
+    width: auto;
+    border-radius: 10px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 .body{
@@ -87,7 +101,7 @@
 .side_nav{
     background-color: var(--sub-theme-color-sub);
     width: 100%;
-    min-height: 800px;
+    min-height: 930px;
     border-radius: 10px;
     margin-bottom: 10px;
 }
@@ -218,7 +232,7 @@
 }
 
 .recommend_title{
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .recommend_iframe{
@@ -226,15 +240,21 @@
     justify-content: center;
     width: 100%;
     border-radius: 10px;
-    height: 480px;
+    height: 600px;
     border: 3px solid var(--sub-theme-color-sub);
     margin-bottom: 10px;
 }
 
 .page_embed{
+    width: auto;
+    height: auto;
+}
+
+#youtube_embed{
     width: 100%;
     height: 100%;
 }
+
 
 .recommend_footer{
     display: flex;
@@ -375,6 +395,8 @@
     border-radius: 3px;
     font-weight: bold;
 }
+
+
 
 #close_button{
     background-color: lightgray;
