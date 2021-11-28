@@ -14,8 +14,8 @@
 <body>
     <div class="header">
         <div class="welcome_message">
-            Welcome! {{user}}
-            {{keywords}}
+            {% set user_keyword = user.keywords[1:-1].split(',') %}
+            Welcome! {{user.email}}
         </div>
     </div>
     <div class="body">
@@ -43,14 +43,12 @@
                                             <span class="title">학사일정</span>
                                         </a>
                                     </li>
-                                    {% if keywords %}
-                                        {% for keyword in keywords%}
+                                    {% if user_keyword %}
+                                        {% for keyword in user_keyword %}
                                             <li class="list" id="calendar">
                                                 <a href="#">
-                                                    <span class="icon">
-                                                        <ion-icon name="calendar-outline"></ion-icon>
-                                                    </span>
-                                                    <span class="title">keyword.keyword</span>
+                                                    <span class="icon"><ion-icon name="checkmark-outline"></ion-icon></span>
+                                                    <span class="title">{{keyword}}</span>
                                                 </a>
                                             </li>
                                         {% endfor %}
@@ -187,57 +185,20 @@
                 키워드를 직접 설정하세요!
             </div>
             <div class="keyword_button_list">
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button">
-                        이벤트1
-                    </button>
-                </div>
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        이벤트2
-                    </button>
-                </div>
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        이벤트3
-                    </button>
-                </div>
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        이벤트
-                    </button>
-                </div>
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        이벤트
-                    </button>
-                </div>
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        이벤트
-                    </button>
-                </div>
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        이벤트
-                    </button>
-                </div>
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        이벤트
-                    </button>
-                </div>
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        이벤트
-                    </button>
-                </div>
                 {% for keyword in keywords %}
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        {{keyword}}
-                    </button>
-                </div>
+                    {%if keyword.keyword in user.keywords %}
+                        <div class="button_wrapper">
+                            <button type="button" class="keyword_set_button active">
+                                {{keyword.keyword}}
+                            </button>
+                        </div>
+                    {% else %}
+                        <div class="button_wrapper">
+                            <button type="button" class="keyword_set_button">
+                                {{keyword.keyword}}
+                            </button>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             
             </div>
@@ -251,8 +212,6 @@
 
     </div>
     
-
-
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
