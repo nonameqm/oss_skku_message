@@ -33,6 +33,12 @@ oss_skku_message_system
 
 ## 사용방법
 
+shell script:
+
 ```
 python3 server/app/main.py
 ```
+
+For database access contact to YoungJaeBae: qodudwos@gmail.com
+
+[address]https://localhost:8000/page/login
