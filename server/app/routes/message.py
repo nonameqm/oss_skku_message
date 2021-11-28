@@ -7,6 +7,7 @@ from datetime import datetime
 from starlette.responses import RedirectResponse
 from database.database import SessionLocal
 from database import schema, crud
+import urllib
 
 
 templates = Jinja2Templates(directory="templates")
@@ -34,11 +35,13 @@ def read_msg(request:Request, mid:int, db: Session = Depends(get_database_sessio
     if item is None:
         raise HTTPException(status_code=404, detail="msg not found")
 
-    return templates.TemplateResponse("html", {"request": request, "User": item})
+    return item
 
 @router.get("/message/keyword/{keyword}",response_model=List[schema.MessageReturn])
-def read_msg_keyword(request:Request, keyword:str, db: Session = Depends(get_database_session)):
-
+async def read_msg_keyword(request:Request, keyword, db: Session = Depends(get_database_session)):
+    print(keyword)
+    keyword = keyword.encode().decode("utf-8")
+    
     item = crud.get_msg_by_keyword(db=db, keyword = keyword)
     if item is None:
         raise HTTPException(status_code=404, detail="msg not found")
@@ -57,7 +60,7 @@ def read_msg_user_keyword(request:Request, uid:str, db: Session = Depends(get_da
 #####read#####
 
 #####create#####
-@router.post('/message/keyword')
+@router.post('/message_keyword')
 async def create_msg( db:Session = Depends(get_database_session),title:str=Form(...), contents:str=Form(...), keyword1:str = Form(...),keyword2:str = Form(...),keyword3:str = Form(...)):
 
     msg = schema.Message(title=title, contents = contents, datetime = datetime.now())

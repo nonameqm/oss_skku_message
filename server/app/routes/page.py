@@ -25,7 +25,7 @@ def checkin_render(request:Request):
     return templates.TemplateResponse('pages/admin.html', context = {'request':request})
 
 ###########################################rendering##############################################
-=======
+
 from fastapi import APIRouter, Request,  Depends
 from fastapi.templating import Jinja2Templates
 from database.database import SessionLocal
