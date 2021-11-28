@@ -73,6 +73,13 @@ btnlist.forEach((button) => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+  var url_array=window.location.href.split('/')
+  uid=(url_array[url_array.length-1])
+
+  if(uid[uid.length-1]=='#'){
+    uid=uid.substring(0,uid.length-1)
+  }
+
   $(".popup_box").hide();
   $(".keyword_box").hide();
 
@@ -162,12 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       };
     });
-
-
-
-
+    set_keyword(uid, new_keyword_list);
     $('.keyword_box').hide();
-
   })
 
 
@@ -190,9 +193,18 @@ function popup_hide() {
   $(".popup_box").hide();
 }
 
-function set_keyword(keyword_list){
+function set_keyword(uid, keyword_list){
   $.ajax({
-    
+    type: "POST",
+    url: `/userchange_keyword/${uid}`,
+    data: {'keywords':'['+keyword_list.toString()+']'},
+    dataType: 'text',   //문자형식으로 받기
+    success: function (data) {   //데이터 주고받기 성공했을 경우 실행할 결과
+      alert(data);
+    },
+    error: function () {   //데이터 주고받기가 실패했을 경우 실행할 결과
+      alert('실패');
+    }
   })
 }
 
