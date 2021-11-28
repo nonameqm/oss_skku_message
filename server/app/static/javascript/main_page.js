@@ -3,6 +3,7 @@ var button = document.querySelector("#keyword_button");
 let navlist = document.querySelectorAll(".list");
 let btnlist = document.querySelectorAll(".sns_button");
 
+
 navlist.forEach((listitem) => {
   listitem.onclick = function () {
     if (listitem.className != "list active") {
@@ -11,21 +12,49 @@ navlist.forEach((listitem) => {
         navlist[j++].className = "list";
       }
       listitem.className = "list active";
-      $.ajax({
-        type: "GET",
-        url: "/message/message/keyword/코로나",
-        dataType: "text",
-        error: function () {
-          alert("Fail!");
-        },
-        success: function (data) {
-          message = JSON.parse(data);
-          console.log(message);
-          new_table_string=make_new_table(message);
-          $('#message_table').remove();
-          $('.message_list').append(new_table_string);
-        },
-      });
+      nav_keyword=(listitem.textContent.trim());
+      if(nav_keyword=='전체 메시지'){
+        $.ajax({
+          type: "GET",
+          url: `/message/message`,
+          dataType: "text",
+          error: function () {
+            alert("Fail!");
+          },
+          success: function (data) {
+            message = JSON.parse(data);
+            console.log(message);
+            new_table_string = make_new_table(message);
+            $('#message_table').remove();
+            $('.message_list').append(new_table_string);
+            $(".message_item").click(function () {
+              var message_id = $(this).attr("id");
+              popup_show(message_id);
+            });
+          },
+        });
+      }else{
+        $.ajax({
+          type: "GET",
+          url: `/message/message/keyword/${nav_keyword}`,
+          dataType: "text",
+          error: function () {
+            alert("Fail!");
+          },
+          success: function (data) {
+            message = JSON.parse(data);
+            console.log(message);
+            new_table_string = make_new_table(message);
+            $('#message_table').remove();
+            $('.message_list').append(new_table_string);
+            $(".message_item").click(function () {
+              var message_id = $(this).attr("id");
+              popup_show(message_id);
+            });
+          },
+        });
+      }
+      
     }
   };
 });
@@ -46,26 +75,31 @@ btnlist.forEach((button) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   $(".popup_box").hide();
+  $(".keyword_box").hide();
 
   $("#keyword_button").click(function () {
-    popup_show(1);
+    $(".keyword_box").show();
   });
   $("#close_button").click(function () {
     popup_hide();
   });
 
-  $(".keyword_box").hide();
-
   $(".message_item").click(function () {
     var message_id = $(this).attr("id");
     popup_show(message_id);
   });
+
+  $("#keyword_close_button").click(function(){
+    $(".keyword_box").hide();
+  })
 });
 
 function popup_hide() {
   $("#iframeBg").remove();
   $(".popup_box").hide();
 }
+
+
 
 function popup_show(mid) {
   $.ajax({

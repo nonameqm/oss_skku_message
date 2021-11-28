@@ -354,6 +354,11 @@
     float: right;
 }
 
+.keywordbox_footer{
+    padding: 16px;
+    float: right;
+}
+
 
 .user_button{
     color: white;
@@ -373,6 +378,13 @@
     background-color: lightgray;
     width: auto;
     padding: 3px;
+}
+
+#keyword_close_button{
+    background-color: lightgray;
+    width: auto;
+    padding: 3px;
+    float: right;
 }
 
 #save_button{
@@ -420,11 +432,18 @@
 .keyword_button_list{
     display: grid;
     grid-template-columns: repeat(8, 10fr);
+    height: 85%;
+    margin-bottom: 10px;
 }
 
 .button_wrapper{
     display: flex;
     justify-content: center;
+    height: 60px;
+}
+
+.keyword_box_footer{
+    width: 100%;
 }
 
 
@@ -440,4 +459,14 @@
     cursor: pointer;
     text-align:center;
     border: none;
+}
+
+.header{
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.welcome_message{
+    text-align: center;
 }
