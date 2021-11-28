@@ -16,7 +16,7 @@ oss_skku_message_system
 
 ## 유튜브링크
 
-[Youtube](http://www.youtube.com/watch?v=6Y1kWcrFKQo)
+[Youtube](https://www.youtube.com/watch?v=TVhHDLBnD54)
 
 ## 설치안내
 
@@ -43,11 +43,9 @@ shell script:
 python3 server/app/main.py
 ```
 
-# [address]https://localhost:8000/page/login
+> [address](https://localhost:8000/page/login)
 
 For database access contact to YoungJaeBae: qodudwos@gmail.com
-
-[Youtube](https://www.youtube.com/watch?v=TVhHDLBnD54)
 
 <ol>
   <li>사용방법
