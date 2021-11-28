@@ -30,8 +30,7 @@
                     <div class="nav_content">
                         <div class="nav_wrapper">
                             <div class="side_nav">
-                                <ul>
-                                    <!-- list item from server update -->
+                                <ul class="sn">
                                     <li class="list active" id="whole">
                                         <a href="#">
                                             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
@@ -41,7 +40,7 @@
                                     <li class="list" id="calendar">
                                         <a href="#">
                                             <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
-                                            <span class="title">학사 일정</span>
+                                            <span class="title">학사일정</span>
                                         </a>
                                     </li>
                                     {% if keywords %}
@@ -121,10 +120,7 @@
                                 <button type="button" class="sns_button active" id="youtube_button">
                                     SKKU Youtube
                                 </button>
-                            
-                                <button type="button" class="sns_button" id="fb_button">
-                                    SKKU Facebook
-                                </button>
+
                                 <button type="button" class="sns_button" id="ig_button">
                                     SKKU Instagram
                                 </button>
@@ -192,12 +188,61 @@
             </div>
             <div class="keyword_button_list">
                 <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        키워드 버튼
+                    <button type="button" class="keyword_set_button">
+                        이벤트1
                     </button>
                 </div>
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        이벤트2
+                    </button>
+                </div>
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        이벤트3
+                    </button>
+                </div>
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        이벤트
+                    </button>
+                </div>
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        이벤트
+                    </button>
+                </div>
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        이벤트
+                    </button>
+                </div>
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        이벤트
+                    </button>
+                </div>
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        이벤트
+                    </button>
+                </div>
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        이벤트
+                    </button>
+                </div>
+                {% for keyword in keywords %}
+                <div class="button_wrapper">
+                    <button type="button" class="keyword_set_button active">
+                        {{keyword}}
+                    </button>
+                </div>
+                {% endfor %}
+            
             </div>
             <div class="keyword_box_footer">
+                <input class="user_button" type="button" id="keyword_set_button" value="Set">
                 <input class="user_button" type="button" id="keyword_close_button" value="Close">
             </div>
             

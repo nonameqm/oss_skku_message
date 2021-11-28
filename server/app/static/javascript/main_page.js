@@ -92,6 +92,24 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#keyword_close_button").click(function(){
     $(".keyword_box").hide();
   })
+
+  $('#keyword_set_button').click(function(){
+    $('.sn').remove();
+    new_nav_list=make_new_side_nav();
+    $('.side_nav').append(new_table_string);
+  })
+
+
+  $('.keyword_set_button').click(function () {
+    var nav_item=$(this).text().trim();
+    nav_class=($(this).attr('class'));
+    if(nav_class==='keyword_set_button'){
+      $(this).attr('class')='keyword_set_button active'
+    }else{
+      $(this).attr('class') = 'keyword_set_button'
+    }
+  })
+
 });
 
 function popup_hide() {
@@ -137,8 +155,7 @@ function popup_show(mid) {
 
 
 function make_new_table(message_list){
-  message_data_string=''
-
+  message_data_string='';
   for (var i=0;i<(message_list.length);i++){
     date_data=new Date(message_list[i].datetime);
     date=date_data.getFullYear()+'-'+date_data.getMonth()+'-'+date_data.getDate();
@@ -165,6 +182,43 @@ function make_new_table(message_list){
             ${message_data_string}
         </tbody>
     </table>
-  `
+  `;
   return return_data;
+}
+
+function make_nav_item(keyword_list){
+  return_string=''
+  for(var i=0;i<keyword_list.length;i++){
+    message_string = `
+      <li class="list" id="calendar">
+        <a href="#">
+            <span class="icon">
+                <ion-icon name="checkmark-outline"></ion-icon>
+            </span>
+            <span class="title">${keyword_item}</span>
+        </a>
+      </li>
+    `
+    return_string=return_string+message_string
+  }
+  
+  return return_string;
+
+}
+  
+function make_new_side_nav(keyword_list){
+  new_item_string=make_nav_item(keyword_list)
+  return_string=`
+  <ul class="sn">
+      <li class="list active" id="whole">
+          <a href="#">
+              <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+              <span class="title">전체 메시지</span>
+          </a>
+      </li>
+      ${new_item_string}
+  </ul>
+  `
+
+  return return_string;
 }
