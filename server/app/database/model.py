@@ -32,6 +32,7 @@ class User(Base):
     email = Column(String(50), unique=True)
     name = Column(String(20))
     password = Column(String(50))
+    keywords = Column(Text)
 
 class Message(Base):
     __tablename__ = "messages"
@@ -59,11 +60,11 @@ class Keyword(Base):
     msg = relationship("Message", back_populates="Key")
     
 
-class UserKeyAssoc(Base):
-    __tablename__ = "user_key_assoc"
-    __table_args__ = (
-        PrimaryKeyConstraint('user_id', 'relation_id'),
-    )
+# class UserKeyAssoc(Base):
+#     __tablename__ = "user_key_assoc"
+#     __table_args__ = (
+#         PrimaryKeyConstraint('user_id', 'relation_id'),
+#     )
 
-    user_id = Column(ForeignKey('users.uid'))
-    relation_id = Column(ForeignKey('keywords.relation_id'))
+#     user_id = Column(ForeignKey('users.uid'))
+#     relation_id = Column(ForeignKey('keywords.relation_id'))
