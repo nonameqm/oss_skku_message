@@ -3,7 +3,7 @@ oss_skku_message_system
 
 ## THE NAME OF APP
 **_SKKU-MESSAGE-MANAGER_**
-## screenshots of your APP
+## SCREENSHOT OF YOUR APP
 ![앱이미지1](./screenshot1.png)
 ![앱이미지2](./screenshot2.png)
 ![앱이미지3](./screenshot3.png)
