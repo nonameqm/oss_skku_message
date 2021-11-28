@@ -201,11 +201,17 @@ document.addEventListener("DOMContentLoaded", () => {
       type = 'youtube';
       $("#instagram_table").hide();
       $("#youtube_table").show()
-    
-    
     }
-
   })
+
+  $('.embed_item').click(function () {
+    title=($(this).attr('name'))
+    type=($(this).attr('id'))
+    console.log(title+' '+type)
+    $('.recommend_title').text($(this).children('td').text())
+  })
+
+
 
 
 
@@ -223,7 +229,6 @@ function set_keyword(uid, keyword_list){
     data: {'keywords':'['+keyword_list.toString()+']'},
     dataType: 'text',   //문자형식으로 받기
     success: function (data) {   //데이터 주고받기 성공했을 경우 실행할 결과
-      alert(data);
     },
     error: function () {   //데이터 주고받기가 실패했을 경우 실행할 결과
       alert('실패');
