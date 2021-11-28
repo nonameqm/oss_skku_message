@@ -31,11 +31,12 @@ def checkin_render(request:Request):
 @router.get("/main/{uid}")
 def checkin_render(request:Request, uid:str,db: Session = Depends(get_database_session)):
     message_list = crud.get_msgs(db=db)
+    userinfo = crud.get_user(db = db, id=uid)
     keywords = crud.get_keyword_by_uid(db = db, uid = uid)
     context={
         'request': request, 
         'data': message_list,
-        'user': uid,
+        'user': userinfo,
         'keywords':keywords
     }
     return templates.TemplateResponse('pages/main_page.html', context = context)
