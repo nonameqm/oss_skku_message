@@ -8,7 +8,7 @@ class User(BaseModel):
     email: str
     name: str
     password: str
-    keyword:str
+    keywords:str
     
     class Config:
         orm_mode = True
