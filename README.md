@@ -11,7 +11,7 @@ oss_skku_message_system
 ![앱이미지5](./screenshot1.jpg)
 ## 유튜브링크
 
-[Youtube](https://www.youtube.com/watch?v=6Y1kWcrFKQo)
+[Youtube](http://www.youtube.com/watch?v=6Y1kWcrFKQo)
 
 ## 설치안내
 
@@ -43,13 +43,6 @@ For database access contact to YoungJaeBae: qodudwos@gmail.com
 
 [Youtube](https://www.youtube.com/watch?v=TVhHDLBnD54)
 <ol>
-  <li>설치안내
-    <ul>
-      <li>방법1</li>
-      <li>방법1</li>
-      <li>방법1</li>
-    </ul>
-  </li>
   <li>사용방법
     <ul>
       <li>성균관대학교 메시지 알림창 기능</li>
