@@ -1,3 +1,31 @@
+from fastapi import APIRouter, Request
+from fastapi.templating import Jinja2Templates
+
+
+
+templates = Jinja2Templates(directory="templates")
+router=APIRouter(prefix="/page")
+
+
+###########################################rendering##############################################
+@router.get("/login")
+def login_render(request:Request):
+    return templates.TemplateResponse('pages/login.html', context = {'request':request})
+
+@router.get("/checkin")
+def checkin_render(request:Request):
+    return templates.TemplateResponse('pages/checkin.html', context = {'request':request})
+
+@router.get("/main/{uid}")
+def checkin_render(request:Request, uid:str):
+    return templates.TemplateResponse('pages/main_page.html', context = {'request':request, 'user':uid})
+
+@router.get("/admin")
+def checkin_render(request:Request):
+    return templates.TemplateResponse('pages/admin.html', context = {'request':request})
+
+###########################################rendering##############################################
+=======
 from fastapi import APIRouter, Request,  Depends
 from fastapi.templating import Jinja2Templates
 from database.database import SessionLocal
@@ -40,3 +68,4 @@ def checkin_render(request:Request):
     return templates.TemplateResponse('pages/admin.html', context = {'request':request})
 
 ###########################################rendering##############################################
+

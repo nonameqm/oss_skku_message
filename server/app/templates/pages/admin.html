@@ -12,57 +12,43 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', path='/css/main.css') }}"
-    />
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-size: cover;
-      }
-    </style>
-    <title>회원가입</title>
+    <!-- <link rel="stylesheet" href="../../static/css/admin.css" /> -->
+    <title>관리자</title>
   </head>
   <body>
     <form
-      action="/user/enroll"
-      method="POST"
-      enctype="application/x-www-form-urlencoded"
+      action="/message/message/keyword"
+      method="post"
+      ,enctype="application/x-www-form-urlencoded"
     >
-      <img src="../../static/skku.jpg" width="300" height="300" alt="skku" />
+      <div style="text-align: center">
+        <img src="../../static/skku.jpg" width="300" height="300" alt="skku" />
+      </div>
       <div class="content">
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">ID</label>
-          <input type="name" class="form-control" name="id" />
+          <label for="exampleInputEmail1" class="form-label">메시지 제목</label>
+          <input type="name" class="form-control" name="title" />
         </div>
-        <div class="mb-2">
-          <label for="exampleInputPassword1" class="form-label">비밀번호</label>
-          <input type="password" class="form-control" name="password" />
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">메시지 내용</label>
+          <input type="name" class="form-control" name="contents" />
         </div>
-        <div class="mb-2">
-          <label for="exampleInputEmail1" class="form-label">이름</label>
-          <input
-            type="name"
-            class="form-control"
-            name="name"
-            aria-describedby="emailHelp"
-          />
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">키워드 1</label>
+          <input type="name" class="form-control" name="keyword1" />
         </div>
-        <div class="mb-2">
-          <label for="exampleInputEmail1" class="form-label">e-mail</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            aria-describedby="emailHelp"
-          />
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">키워드 2</label>
+          <input type="name" class="form-control" name="keyword2" />
         </div>
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-success btn-lg">가입하기</button>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">키워드 3</label>
+          <input type="name" class="form-control" name="keyword3" />
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success" style="width: 110px">
+            메시지등록
+          </button>
         </div>
       </div>
     </form>

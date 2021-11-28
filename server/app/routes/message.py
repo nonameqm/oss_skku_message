@@ -28,17 +28,36 @@ async def read_msgs(request: Request, db: Session = Depends(get_database_session
     return records
 
 @router.get("/message/{mid}",response_model=schema.MessageReturn)
-def read_msg(request:Request, mid: str, db: Session = Depends(get_database_session)):
+def read_msg(request:Request, mid:int, db: Session = Depends(get_database_session)):
 
     item = crud.get_msg(db=db,msg_id = mid)
     if item is None:
         raise HTTPException(status_code=404, detail="msg not found")
 
     return templates.TemplateResponse("html", {"request": request, "User": item})
+
+@router.get("/message/keyword/{keyword}",response_model=List[schema.MessageReturn])
+def read_msg_keyword(request:Request, keyword:str, db: Session = Depends(get_database_session)):
+
+    item = crud.get_msg_by_keyword(db=db, keyword = keyword)
+    if item is None:
+        raise HTTPException(status_code=404, detail="msg not found")
+
+    return item
+
+@router.get("/message/user_keyword/{user}",response_model=List[schema.MessageReturn])
+def read_msg_user_keyword(request:Request, uid:str, db: Session = Depends(get_database_session)):
+
+    item = crud.get_msg_by_user_keyword(db=db, uid = uid)
+    if not item:
+        raise HTTPException(status_code=404, detail="msg not found")
+
+    return item
+    
 #####read#####
 
 #####create#####
-@router.post('/message/')
+@router.post('/message/keyword')
 async def create_msg( db:Session = Depends(get_database_session),title:str=Form(...), contents:str=Form(...), keyword1:str = Form(...),keyword2:str = Form(...),keyword3:str = Form(...)):
 
     msg = schema.Message(title=title, contents = contents, datetime = datetime.now())
