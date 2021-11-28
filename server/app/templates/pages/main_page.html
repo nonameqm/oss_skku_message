@@ -12,12 +12,15 @@
     <title>SKKU Message</title>
 </head>
 <body>
+       
     <div class="header">
         <div class="welcome_message">
             {% set user_keyword = user.keywords[1:-1].split(',') %}
             Welcome! {{user.email}}
         </div>
     </div>
+    <input class="user_button" type="button" id="logout_button" value="Logout" onClick="location.href='/page/login'">
+
     <div class="body">
         <div class="section">
             <div class="wrapper">
@@ -92,18 +95,18 @@
             <div class="wrapper">
                 <div class="recommend_header">
                     <div class="header_name">
-                        성균관대학교 채널 추천 및 홍보
+                        성균관대학교 채널 최신 정보 
                     </div>
                 </div>
                 <div class="recommend_body">
                     <div class="recommend_content_wrapper">
                         <div class="recommend_content">
                             <div class="recommend_title">
-                                Future of SKKU : VISION 2030
+                                {{youtubes[0].title}}
                             </div>
                             <div class="recommend_iframe">
                                 <!-- <embed src="https://www.instagram.com/p/CWstKuRP2kG/embed/" class="page_embed" id="ig_embed"></embed> -->
-                                <iframe class="page_embed" id="youtube_embed" src="https://www.youtube.com/embed/onRY-eH3Qro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe class="page_embed" id="youtube_embed" src="https://www.youtube.com/embed/aHJklV9YYhw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 <!-- <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fskkusenergy%2Fposts%2F4276903845751577&show_text=true&width=500" class="page_embed" id="facebook_embed" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> -->
                             </div>
                             <div class="sns_button_list">
@@ -123,9 +126,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for message in data[:5] %}
-                                        <tr class="embed_item" id="{{message.mid}}" name={{message.mid}}>
-                                            <td>{{message.title}}</td>
+                                        {% for youtube_data in youtubes %}
+                                        <tr class="embed_item" id="youtube" name={{youtube_data.url}}>
+                                            <td>{{youtube_data.title}}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -138,10 +141,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for message in data[:5] %}
-                                        <tr class="embed_item" id="{{message.mid}}" name={{message.mid}}>
-                                            <td>{{message.title}}</td>
-                                        </tr>
+                                        {% for ig_data in instas %}
+                                            <tr class="embed_item" id="instagram" name={{ig_data.url}}>
+                                                <td>{{ig_data.title}}</td>
+                                            </tr>
                                         {% endfor %}
                                     </tbody>
                                 

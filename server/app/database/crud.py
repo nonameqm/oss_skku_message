@@ -121,7 +121,7 @@ def get_insta(db:Session, limit = 100):
     return item
 
 def get_youtube(db:Session, limit = 100):
-    item = db.query(model.Insta).limit(limit).all()
+    item = db.query(model.Youtube).limit(limit).all()
     return item
 
 def get_insta_by_title(db:Session, title:str):

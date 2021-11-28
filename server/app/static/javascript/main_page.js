@@ -193,17 +193,35 @@ document.addEventListener("DOMContentLoaded", () => {
       $("#youtube_table").hide(); 
       $("#instagram_table").show();
 
-      }
+      var src_url=document.getElementById('instagram').getAttribute('name')
+      
+      embed_string = make_new_embed(type, src_url)
+      $('.page_embed').remove()
+      $('.recommend_iframe').append(embed_string);
+    }
   })
 
   $('#youtube_button').click(function () {
     if (type != 'youtube') {
       type = 'youtube';
       $("#instagram_table").hide();
-      $("#youtube_table").show()
-    
-    
+      $("#youtube_table").show();
+      
+      
+      var src_url = document.getElementById('youtube').getAttribute('name')
+      embed_string = make_new_embed(type, src_url)
+      $('.page_embed').remove()
+      $('.recommend_iframe').append(embed_string);
     }
+  })
+
+  $('.embed_item').click(function () {
+    src_url=($(this).attr('name'))
+    type=($(this).attr('id'))
+    $('.recommend_title').text($(this).children('td').text())
+    embed_string=make_new_embed(type, src_url)
+    $('.page_embed').remove()
+    $('.recommend_iframe').append(embed_string);
 
   })
 
@@ -223,7 +241,6 @@ function set_keyword(uid, keyword_list){
     data: {'keywords':'['+keyword_list.toString()+']'},
     dataType: 'text',   //문자형식으로 받기
     success: function (data) {   //데이터 주고받기 성공했을 경우 실행할 결과
-      alert(data);
     },
     error: function () {   //데이터 주고받기가 실패했을 경우 실행할 결과
       alert('실패');
@@ -246,7 +263,7 @@ function popup_show(mid) {
         left = 0;
         top = 0;
         width = "200%";
-        height = "100vh";
+        height = "1600px";
         backgroundColor = "#000";
         filter = "Alpha(Opacity=50)";
         opacity = "0.6";
