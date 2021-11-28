@@ -441,3 +441,13 @@
     text-align:center;
     border: none;
 }
+
+.header{
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.welcome_message{
+    text-align: center;
+}
