@@ -14,7 +14,7 @@ oss_skku_message_system
 
 [Youtube](https://www.youtube.com/watch?v=6Y1kWcrFKQo)
 
-## 설치안내, 사용방법
+## 설치안내
 
 - Requirements
   - Python 3.7 +
@@ -30,3 +30,9 @@ oss_skku_message_system
     - sqlalchemy
     - mysql-connector-python
     - starlette
+
+## 사용방법
+
+```
+python3 server/app/main.py
+```
