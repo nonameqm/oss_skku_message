@@ -59,7 +59,7 @@ def logincheck(db:Session = Depends(get_database_session), id:str = Form(...), p
 #####create#####
 @router.post('/enroll')
 async def create_user( db:Session = Depends(get_database_session), id:str = Form(...), email:str=Form(...), name:str = Form(...), password:str = Form(...)):
-    user = schema.User(uid = id, email = email, name = name, password = password, keywords="[코로나,행사]")
+    user = schema.User(uid = id, email = email, name = name, password = password, keywords="")
     response = crud.create_user(db = db, user=user)
     if response == None:
         raise HTTPException(status_code=412, detail="User ID already exists")

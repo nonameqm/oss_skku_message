@@ -116,12 +116,12 @@ def get_msg_by_user_keyword(db:Session, uid:str):
     ).all()
     return obj
 
-def get_insta(db:Session):
-    item = db.query(model.Insta).all()
+def get_insta(db:Session, limit = 100):
+    item = db.query(model.Insta).limit(limit).all()
     return item
 
-def get_youtube(db:Session):
-    item = db.query(model.Insta).all()
+def get_youtube(db:Session, limit = 100):
+    item = db.query(model.Insta).limit(limit).all()
     return item
 
 def get_insta_by_title(db:Session, title:str):

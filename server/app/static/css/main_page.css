@@ -274,8 +274,10 @@
     justify-content: center;
     width: 100%;
     border-radius: 10px;
-    min-height: 300px;
+    height: 300px;
+    padding: 10px;
     border: 3px solid var(--sub-theme-color-sub);
+    scroll-behavior: auto;
 }
 
 .table{
@@ -382,10 +384,19 @@
 
 #keyword_close_button{
     background-color: lightgray;
-    width: auto;
-    padding: 3px;
-    float: right;
+    width: 90px;
+    padding: 12px;
+    color: black;
 }
+
+#keyword_set_button{
+    background-color: var(--sub-theme-color-sub);
+    width: 90px;
+    padding: 12px;
+    margin-right: 10px;
+    color: black;
+}
+
 
 #save_button{
     background-color: blue;
@@ -431,7 +442,10 @@
 
 .keyword_button_list{
     display: grid;
-    grid-template-columns: repeat(8, 10fr);
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 20px;
+    row-gap: 10px;
+    grid-template-rows: repeat(6, 1fr);
     height: 85%;
     margin-bottom: 10px;
 }
@@ -444,12 +458,14 @@
 
 .keyword_box_footer{
     width: 100%;
+    display: flex;
+    justify-content: end;
 }
 
 
 .keyword_set_button{
-    background-color: var(--sub-theme-color-sub);
-    padding: 8px;
+    background-color: white;
+    padding: 12px;
     width: 100%;
     padding: 15px;
     border: none;
@@ -460,6 +476,11 @@
     text-align:center;
     border: none;
 }
+.keyword_set_button.active{
+    background-color: var(--sub-theme-color-sub);
+    
+}
+
 
 .header{
     font-size: 36px;

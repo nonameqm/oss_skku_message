@@ -14,8 +14,8 @@
 <body>
     <div class="header">
         <div class="welcome_message">
-            Welcome! {{user}}
-            {{keywords}}
+            {% set user_keyword = user.keywords[1:-1].split(',') %}
+            Welcome! {{user.email}}
         </div>
     </div>
     <div class="body">
@@ -30,28 +30,19 @@
                     <div class="nav_content">
                         <div class="nav_wrapper">
                             <div class="side_nav">
-                                <ul>
-                                    <!-- list item from server update -->
+                                <ul class="sn">
                                     <li class="list active" id="whole">
                                         <a href="#">
                                             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                                             <span class="title">전체 메시지</span>
                                         </a>
                                     </li>
-                                    <li class="list" id="calendar">
-                                        <a href="#">
-                                            <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
-                                            <span class="title">학사 일정</span>
-                                        </a>
-                                    </li>
-                                    {% if keywords %}
-                                        {% for keyword in keywords%}
+                                    {% if user_keyword %}
+                                        {% for keyword in user_keyword %}
                                             <li class="list" id="calendar">
                                                 <a href="#">
-                                                    <span class="icon">
-                                                        <ion-icon name="calendar-outline"></ion-icon>
-                                                    </span>
-                                                    <span class="title">keyword.keyword</span>
+                                                    <span class="icon"><ion-icon name="checkmark-outline"></ion-icon></span>
+                                                    <span class="title">{{keyword}}</span>
                                                 </a>
                                             </li>
                                         {% endfor %}
@@ -112,25 +103,49 @@
                             </div>
                             <div class="recommend_iframe">
                                 <!-- <embed src="https://www.instagram.com/p/CWstKuRP2kG/embed/" class="page_embed" id="ig_embed"></embed> -->
-                                <iframe class="page_embed" id="youtube_embed" src="https://www.youtube.com/embed/onRY-eH3Qro" title="YouTube video player"
-                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                                <iframe class="page_embed" id="youtube_embed" src="https://www.youtube.com/embed/onRY-eH3Qro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 <!-- <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fskkusenergy%2Fposts%2F4276903845751577&show_text=true&width=500" class="page_embed" id="facebook_embed" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> -->
                             </div>
                             <div class="sns_button_list">
                                 <button type="button" class="sns_button active" id="youtube_button">
                                     SKKU Youtube
                                 </button>
-                            
-                                <button type="button" class="sns_button" id="fb_button">
-                                    SKKU Facebook
-                                </button>
+
                                 <button type="button" class="sns_button" id="ig_button">
                                     SKKU Instagram
                                 </button>
                             </div>
                             <div class="sns_content">
-                            
+                                <table class="table" id="youtube_table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">이슈</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for message in data[:5] %}
+                                        <tr class="embed_item" id="{{message.mid}}" name={{message.mid}}>
+                                            <td>{{message.title}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                
+                                </table>
+                                <table class="table" id="instagram_table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">이슈</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for message in data[:5] %}
+                                        <tr class="embed_item" id="{{message.mid}}" name={{message.mid}}>
+                                            <td>{{message.title}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -184,20 +199,31 @@
             </div>
         </div>
     </div>
-
     <div class="keyword_box">
         <div class="keyword_box_wrapper">
             <div class="keyword_title">
                 키워드를 직접 설정하세요!
             </div>
             <div class="keyword_button_list">
-                <div class="button_wrapper">
-                    <button type="button" class="keyword_set_button active">
-                        키워드 버튼
-                    </button>
-                </div>
+                {% for keyword in keywords %}
+                    {%if keyword.keyword in user.keywords %}
+                        <div class="button_wrapper">
+                            <button type="button" class="keyword_set_button active">
+                                {{keyword.keyword}}
+                            </button>
+                        </div>
+                    {% else %}
+                        <div class="button_wrapper">
+                            <button type="button" class="keyword_set_button">
+                                {{keyword.keyword}}
+                            </button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            
             </div>
             <div class="keyword_box_footer">
+                <input class="user_button" type="button" id="keyword_set_button" value="Set">
                 <input class="user_button" type="button" id="keyword_close_button" value="Close">
             </div>
             
@@ -206,8 +232,6 @@
 
     </div>
     
-
-
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
