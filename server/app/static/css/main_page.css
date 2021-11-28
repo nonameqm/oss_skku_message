@@ -303,7 +303,7 @@
     border-radius: 10px;
     background-color: white;
     z-index: 10001;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .popup_head{
@@ -383,8 +383,10 @@
 
 .actual_content{
     width: 100%;
-    min-height: 400px;
+    height: 350px;
+    resize: none;
     border: 1px solid gray;
+    overflow: scroll;
 }
 
 .keyword_box{
