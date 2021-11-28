@@ -16,9 +16,9 @@ def login_render(request:Request):
 def checkin_render(request:Request):
     return templates.TemplateResponse('pages/checkin.html', context = {'request':request})
 
-@router.get("/main")
-def checkin_render(request:Request):
-    return templates.TemplateResponse('pages/main_page.html', context = {'request':request})
+@router.get("/main/{uid}")
+def checkin_render(request:Request, uid:str):
+    return templates.TemplateResponse('pages/main_page.html', context = {'request':request, 'user':uid})
 
 @router.get("/admin")
 def checkin_render(request:Request):

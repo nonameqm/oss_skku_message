@@ -41,12 +41,14 @@ def logincheck(db:Session = Depends(get_database_session), id:str = Form(...), p
     item = crud.get_user(db=db, user_id = id)
     response =  HTTPException(status_code=412, detail="Password fail")
     if item.password == password:
-        response =  RedirectResponse('/page/main',status_code=303)
+        response =  RedirectResponse('/page/main/{}'.format(id),status_code=303)
+        if item.uid == "admin":
+            response =  RedirectResponse('/page/admin',status_code=303)
     return response
 #####read#####
 
 #####create#####
-@router.post('/')
+@router.post('/enroll')
 async def create_user( db:Session = Depends(get_database_session), id:str = Form(...), email:str=Form(...), name:str = Form(...), password:str = Form(...)):
     user = schema.User(uid = id, email = email, name = name, password = password)
     response = crud.create_user(db = db, user=user)
