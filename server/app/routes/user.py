@@ -36,14 +36,14 @@ def read_User(request:Request, uid: str, db: Session = Depends(get_database_sess
 
     return templates.TemplateResponse("html", {"request": request, "User": item})
 
-@router.get("change_key/{uid}",response_model=schema.User)
-def change_keyword(request:Request, uid: str, db: Session = Depends(get_database_session)):
+@router.post("change_keyword/{uid}")
+def change_keyword(request:Request, uid: str, db: Session = Depends(get_database_session), keywords:str = Form(...)):
 
-    item = crud.get_user(db=db, user_id = uid)
+    item = crud.update_user_keyword(db=db, uid = uid, keywords=keywords)
     if item is None:
         raise HTTPException(status_code=404, detail="User not found")
 
-    return templates.TemplateResponse("html", {"request": request, "User": item})
+    return HTTPException(status_code=200, detail="success")
 
 @router.post("/login")
 def logincheck(db:Session = Depends(get_database_session), id:str = Form(...), password:str=Form(...)):
@@ -59,7 +59,7 @@ def logincheck(db:Session = Depends(get_database_session), id:str = Form(...), p
 #####create#####
 @router.post('/enroll')
 async def create_user( db:Session = Depends(get_database_session), id:str = Form(...), email:str=Form(...), name:str = Form(...), password:str = Form(...)):
-    user = schema.User(uid = id, email = email, name = name, password = password, keywords= "")
+    user = schema.User(uid = id, email = email, name = name, password = password, keywords="[코로나,행사]")
     response = crud.create_user(db = db, user=user)
     if response == None:
         raise HTTPException(status_code=412, detail="User ID already exists")

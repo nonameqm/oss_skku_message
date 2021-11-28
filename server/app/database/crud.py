@@ -28,6 +28,17 @@ def create_user(db: Session, user: schema.User):
         db.refresh(db_user)
         return db_user
 
+def update_user_keyword(db:Session, uid:str, keywords:str):
+    db_user=db.query(
+        model.User
+    ).filter(
+        model.User.uid == uid
+    ).update(
+        {'keywords':keywords}
+    )
+    db.commit()
+    return db_user
+
 
 def get_msg(db: Session, msg_id: int):
     return db.query(model.Message).filter(model.Message.mid == msg_id).first()
