@@ -2,7 +2,7 @@
 var button = document.querySelector("#keyword_button");
 let navlist = document.querySelectorAll(".list");
 let btnlist = document.querySelectorAll(".sns_button");
-
+type='youtube'
 
 navlist.forEach((listitem) => {
   listitem.onclick = function () {
@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     uid=uid.substring(0,uid.length-1)
   }
 
+  $("#instagram_table").hide();
   $(".popup_box").hide();
   $(".keyword_box").hide();
 
@@ -185,6 +186,28 @@ document.addEventListener("DOMContentLoaded", () => {
       $(this).attr('class', 'keyword_set_button')
     }
   })
+
+  $('#ig_button').click(function(){
+    if(type!='instagram'){
+      type='instagram';
+      $("#youtube_table").hide(); 
+      $("#instagram_table").show();
+
+      }
+  })
+
+  $('#youtube_button').click(function () {
+    if (type != 'youtube') {
+      type = 'youtube';
+      $("#instagram_table").hide();
+      $("#youtube_table").show()
+    
+    
+    }
+
+  })
+
+
 
 });
 
@@ -312,3 +335,16 @@ function make_new_side_nav(keyword_list){
 
   return return_string;
 }
+
+
+function make_new_embed(type, src_string){
+  embed_string=''
+  if (type=='youtube'){
+    embed_string =`<iframe class="page_embed" id="youtube_embed" src="https://www.youtube.com/embed/${src_string}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+  }else{
+    embed_string =`<embed src="https://www.instagram.com/p/${src_string}/embed/" class="page_embed" id="ig_embed"></embed>`
+  }
+
+  return embed_string;
+}
+
