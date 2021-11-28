@@ -43,7 +43,7 @@ shell script:
 python3 server/app/main.py
 ```
 
-> [address](https://localhost:8000/page/login)
+[address](https://localhost:8000/page/login)
 
 For database access contact to YoungJaeBae: qodudwos@gmail.com
 
