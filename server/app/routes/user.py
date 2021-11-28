@@ -48,7 +48,9 @@ def change_keyword(request:Request, uid: str, db: Session = Depends(get_database
 @router.post("/login")
 def logincheck(db:Session = Depends(get_database_session), id:str = Form(...), password:str=Form(...)):
     item = crud.get_user(db=db, user_id = id)
-    response =  HTTPException(status_code=412, detail="Password fail")
+    if(item==None):
+        return RedirectResponse('/page/login', status_code=303)
+    response =  RedirectResponse('/page/login', status_code=303)
     if item.password == password:
         response =  RedirectResponse('/page/main/{}'.format(id),status_code=303)
         if item.uid == "admin":
