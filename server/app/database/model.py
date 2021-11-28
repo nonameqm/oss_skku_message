@@ -42,7 +42,7 @@ class Message(Base):
     )
     mid = Column(Integer, primary_key=True, unique= True, autoincrement=True)
     title = Column(String(100))
-    contents = Column(String(500))
+    contents = Column(Text)
     datetime = Column(DateTime)
     Key = relationship("Keyword", back_populates="msg")
 

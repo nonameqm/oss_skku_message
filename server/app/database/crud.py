@@ -33,7 +33,9 @@ def get_msg(db: Session, msg_id: int):
 def get_msg_by_keyword(db:Session, keyword:str):
     obj = db.query(model.Message).join(
         model.Keyword,
-        model.Keyword.mid == model.Message.mid and  model.Keyword.keyword == keyword
+        model.Keyword.mid == model.Message.mid
+    ).filter(
+        model.Keyword.keyword == keyword
     ).all()
     return obj
 
